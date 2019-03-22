@@ -1,0 +1,17 @@
+{
+  "name": "leetcode",
+  "version": "1.0.0",
+  "description": "tests and solutions for leetcode",
+  "main": "src/",
+  "dependencies": {
+    "jest": "^24.5.0",
+    "ts-jest": "^24.0.0",
+    "typescript": "^3.3.4000"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "xinrui ma",
+  "license": "ISC"
+}
