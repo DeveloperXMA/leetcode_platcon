@@ -4,11 +4,15 @@
   "description": "tests and solutions for leetcode",
   "main": "src/",
   "dependencies": {
+    "@types/jest": "^24.0.11",
     "jest": "^24.5.0",
     "ts-jest": "^24.0.0",
+    "tslint": "^5.14.0",
     "typescript": "^3.3.4000"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "tslint-jest": "^1.0.5"
+  },
   "scripts": {
     "test": "jest"
   },
