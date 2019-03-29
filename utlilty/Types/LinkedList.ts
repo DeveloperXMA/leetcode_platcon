@@ -1,9 +1,5 @@
 import { TFunction } from './../common';
-export interface Node<T> {
-  value: T;
-  next?: Node<T>;
-}
-
+import { Node } from './LinkedListNode';
 export class LinkedList<T> {
   private head: Node<T> = null;
   private tail: Node<T> = null;
