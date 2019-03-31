@@ -66,18 +66,18 @@ var search = function(nums, target) {
       if (nums[start] < nums[mid]) {
         // if the target is in the range of sorted array
         if (target < nums[mid] && target >= nums[start]) {
-          end = mid;
+          end = mid - 1;
         } else {
-          start = mid;
+          start = mid + 1;
         }
       } else {
         // This is the case second half array is sorted
 
         // If the target is in the range of second half
         if (target > nums[mid] && target <= nums[end]) {
-          start = mid;
+          start = mid + 1;
         } else {
-          end = mid;
+          end = mid - 1;
         }
       }
     }
