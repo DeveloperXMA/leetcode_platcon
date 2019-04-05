@@ -98,14 +98,12 @@ var isValidSudoku = function(board) {
         if (board[i][j] === '.') continue;
         let number = parseInt(board[i][j]);
         if (rows[i].has(number)) {
-          console.log(i, j, rows[i]. number);
           return false;
         } else {
           rows[i].add(number);
         }
 
         if (columns[j].has(number)) {
-          console.log(i, j, rows[i].number);
           return false;
         } else {
           columns[j].add(number);
@@ -113,7 +111,6 @@ var isValidSudoku = function(board) {
 
         let boxIndex = Math.floor((i / 3)) * 3 + Math.floor((j / 3));
         if (boxes[boxIndex].has(number)) {
-          console.log(i, j, rows[i].number);
           return false;
         } else {
           boxes[boxIndex].add(number);
