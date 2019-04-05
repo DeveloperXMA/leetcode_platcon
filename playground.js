@@ -1,27 +1,26 @@
-
-let results = [];
-let tempArray = [];
-
-var backTrack = function (results, tempArray, nums) {
-  console.log("results ", results);
+var backTrack = function (results, tempArray, nums, used) {
   if (tempArray.length === nums.length) {
-    results.push(tempArray);
-    return results;
+    results.push([...tempArray]);
   } else {
     for (let i = 0; i < nums.length; i++) {
-      if (tempArray.includes(nums[i])) {
-        continue;
-      }
+      if (used[i] || (i > 0 && nums[i - 1] === nums[i] && !nums[i - 1])) continue;
+      used[i] = true;
       tempArray.push(nums[i]);
-      backTrack(results, tempArray, nums);
+      backTrack(results, tempArray, nums, used);
+      used[i] = false
       tempArray.pop();
     }
   }
 }
 
-var permute = function (nums) {
-  backTrack(results, tempArray, nums);
+
+var permuteUnique = function (nums) {
+  let results = [];
+  let tempArray = [];
+  let used = new Array(nums.length).fill(false);
+  nums.sort();
+  backTrack(results, tempArray, nums, used);
   return results;
 };
 
-permute([1]);
+permuteUnique([1,1]);
