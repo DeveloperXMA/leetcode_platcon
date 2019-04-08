@@ -1,26 +1,23 @@
-var backTrack = function (results, tempArray, nums, used) {
-  if (tempArray.length === nums.length) {
-    results.push([...tempArray]);
+var backTrack = function (result, tempArray, nums, remainder, startIndex) {
+  if (remainder < 0) {
+    return;
+  } else if (remainder === 0) {
+    result.push([...tempArray]);
   } else {
-    for (let i = 0; i < nums.length; i++) {
-      if (used[i] || (i > 0 && nums[i - 1] === nums[i] && !nums[i - 1])) continue;
-      used[i] = true;
+    for (let i = startIndex; i < nums.length; i++) {
       tempArray.push(nums[i]);
-      backTrack(results, tempArray, nums, used);
-      used[i] = false
+      backTrack(result, tempArray, nums, remainder - nums[i], i);
       tempArray.pop();
     }
   }
+
 }
 
-
-var permuteUnique = function (nums) {
-  let results = [];
+var combinationSum = function (candidates, target) {
+  candidates.sort();
+  let result = [];
   let tempArray = [];
-  let used = new Array(nums.length).fill(false);
-  nums.sort();
-  backTrack(results, tempArray, nums, used);
-  return results;
+  backTrack(result, tempArray, candidates, target, 0);
+  return result;
 };
-
-permuteUnique([1,1]);
+combinationSum([2, 3, 6, 7], 7);
