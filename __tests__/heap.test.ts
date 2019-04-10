@@ -10,6 +10,6 @@ describe("Test for heap", () => {
     heap.add(6);
     heap.add(100);
     heap.add(4);
-    console.log(heap.items);
+    heap.add(2);
   })
 });

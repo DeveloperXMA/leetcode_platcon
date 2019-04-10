@@ -58,21 +58,17 @@ export default class Heap {
     return this.items[0];
   }
 
-  private ensureExtraCapacity = (item) => {
-    if (this.size === this.capacity) {
-      if (this.items[this.size - 1] <= item) {
-        return;
-      } else {
-        this.size--;
-      }
+  private ensureExtraCapacity = () => {
+    if (this.size > this.capacity) {
+      this.poll();
     }
   }
 
   public add = (item: number) => {
-    this.ensureExtraCapacity(item);
     this.items[this.size] = item;
     this.size++;
     this.heapifyUp();
+    this.ensureExtraCapacity();
   }
 
   public poll = (): number => {
