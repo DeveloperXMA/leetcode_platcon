@@ -22,7 +22,7 @@ export default class Heap {
   }
 
   private getLeftChild = (parentIndex: number): number => {
-    return this.items[this.getRightChildIndex(parentIndex)];
+    return this.items[this.getLeftChildIndex(parentIndex)];
   }
 
   private getRightChild = (parentIndex: number): number => {
@@ -61,6 +61,7 @@ export default class Heap {
   private ensureExtraCapacity = () => {
     if (this.size > this.capacity) {
       this.poll();
+      this.items.length--;
     }
   }
 
