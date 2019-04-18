@@ -87,7 +87,6 @@ RandomizedSet.prototype.remove = function (val) {
     return false;
   } else {
     let index = this.hashTable.get(val);
-    let result = this.data[index];
     let length = this.data.length;
     let temp = this.data[length - 1];
     this.data[length - 1] = this.data[index];
