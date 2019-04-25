@@ -33,24 +33,21 @@
  * @param {number} n
  * @return {string[]}
  */
-var backTrack = function (result, tempString, left, right) {
-  if (left > right) {
-    return;
-  } else if (left === 0 && right === 0) {
-    result.push(tempString);
-    return;
-  }
-  if (left > 0) {
-    backTrack(result, tempString + "(", left - 1, right);
-  }
-  if (right > 0) {
-    backTrack(result, tempString + ")", left, right - 1);
+var generateParenthesis = function (n) {
+  let results = [];
+  backTrack(results, "", 0, 0, n);
+  return results;
+};
+
+var backTrack = function (results, tempString, left, right, total) {
+  if (tempString.length === total * 2) {
+    results.push(tempString);
+  } else {
+    if (left < total) {
+      backTrack(results, tempString + "(", left + 1, right, total);
+    }
+    if (right < left) {
+      backTrack(results, tempString + ")", left, right + 1, total)
+    }
   }
 }
-
-var generateParenthesis = function (n) {
-  let result = [];
-  let tempString = "";
-  backTrack(result, tempString, n, n);
-  return result;
-};

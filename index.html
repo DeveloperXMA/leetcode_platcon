@@ -1,13 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <script src="/playground.js"></script>
-</head>
-<body>
-  
-</body>
+<html>
+  <head>
+    <title>Xinrui's interview</title>
+  </head>
+  <style>
+    #headerNav {
+      background-color: aquamarine;
+      color: black
+    }
+    .container {
+      max-width: 1200px;
+      min-width: 900px;
+      margin: 20px auto 0;
+    }
+    .content {
+      width: 100%;
+    }
+    #left {
+
+      background-color: blueviolet; 
+    }
+    #right {
+      background-color: blueviolet
+    }
+    .content-item {
+      padding: 25px 10px;
+      margin: 10px;
+    }
+  </style>
+  <script>
+    function foo(event) {
+      console.log(event.target.innerText);
+    }
+  </script>
+  <body>
+    <header id="headerNav">
+      <h1>Header (It can be any heiight)</h1>
+    </header>
+    <div class="container">
+      <div class="content" display="flex">
+        <div id="left" class="content-item">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, porro molestias. Qui natus sed omnis! Nam, beatae dolores illum laboriosam, maxime ipsam mollitia ratione placeat neque ullam sit fugit iure!
+        </div>
+        <div id="right" class="content-item">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, optio veniam! Facilis vitae, in hic velit reprehenderit quibusdam ducimus eaque labore at illo, earum fugiat non, quo repellendus soluta! Velit?
+        </div>
+      </div>
+    </div>
+    <div >
+      <ul onclick="foo(event)" >
+        <li><span>Test1</span></li>
+        <li><span>Test2</span></li>
+        <li><span>Test3</span></li>
+        <li><span>Test4</span></li>
+        <li><span>Test5</span></li>
+      </ul>
+    </div>
+  </body>
 </html>
