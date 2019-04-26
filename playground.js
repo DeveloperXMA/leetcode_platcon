@@ -1,32 +1,33 @@
-var copyRandomList = function(head) {
-  
-  let hashTable = new Map();
-  let curr = head;
-  while (curr !== null) {
-    hashTable.set(curr, new Node(curr.val, null, null));
-    curr = curr.next;
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var threeSumClosest = function(nums, target) {
+  let min = Number.MAX_SAFE_INTEGER;
+  let i = 0;
+  nums = nums.sort();
+  let answer;
+  for (; i < nums.length - 2; i++) {
+      let j = i + 1;
+      let k = nums.length - 1;
+      while (j < k) {
+        let sum = nums[i] + nums[j] + nums[k];
+        if (sum === target) {
+          return sum;
+        }
+        if (min > Math.abs(sum - target)) {
+            min = Math.abs(sum - target);
+            answer = sum;
+        }
+        if (sum > target) {
+            k--; 
+        } else {
+            j++;
+        }
+      }
   }
-  curr = head;
-  while (curr !== null) {
-    hashTable.get(curr).next = hashTable.get(curr.next) ? hashTable.get(curr.next) : null;
-    hashTable.get(curr).random = hashTable.get(curr.random) ? hashTable.get(curr.random) : null;
-    curr = curr.next;
-  }
-  return hashTable.get(head);
+  return answer;
 };
 
-function Node(val,next,random) {
-   this.val = val;
-   this.next = next;
-   this.random = random;
-};
-
-let node1 = new Node(1, null, null);
-let node2 = new Node(2, null, null);
-node1.next = node2;
-node1.random = node2;
-node2.random = node2;
-
-
-let newHead = copyRandomList(node1);
-console.log(newHead)
+threeSumClosest([1,2,4,8,16,32,64,128]);
