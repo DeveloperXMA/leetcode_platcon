@@ -28,5 +28,10 @@ describe("Tests for Graph", () => {
 
   it ("It should run bfs", () => {
     graph.bfs();
+  });
+
+  it("It checks whether the graph has a cycle", () => {
+    const isCycle = graph.detectCycle();
+    expect(isCycle).toBeFalsy();
   })
 })
