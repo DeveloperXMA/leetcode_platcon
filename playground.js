@@ -1,33 +1,13 @@
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number}
- */
-var threeSumClosest = function(nums, target) {
-  let min = Number.MAX_SAFE_INTEGER;
-  let i = 0;
-  nums = nums.sort();
-  let answer;
-  for (; i < nums.length - 2; i++) {
-      let j = i + 1;
-      let k = nums.length - 1;
-      while (j < k) {
-        let sum = nums[i] + nums[j] + nums[k];
-        if (sum === target) {
-          return sum;
-        }
-        if (min > Math.abs(sum - target)) {
-            min = Math.abs(sum - target);
-            answer = sum;
-        }
-        if (sum > target) {
-            k--; 
-        } else {
-            j++;
-        }
-      }
-  }
-  return answer;
-};
+var Object1 = {
+  test: "Xinrui Ma"
+}
 
-threeSumClosest([1,2,4,8,16,32,64,128]);
+var object2 = Object1;
+object2.test = "override";
+var object3 = {
+  test: object2.test
+}
+object3.test = "Balalal";
+console.log(object3.test); // Console.log(Balalal)
+console.log(object2.test); // Console.log(override)
+console.log(Object1.test); // Console.log(override);

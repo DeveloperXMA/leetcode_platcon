@@ -4,12 +4,8 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch current file w/ ts-node",
-      "protocol": "inspector",
-      "args": ["${relativeFile}"],
-      "cwd": "${workspaceRoot}",
-      "runtimeArgs": ["-r", "ts-node/register"],
-      "internalConsoleOptions": "openOnSessionStart"
+      "name": "Launch Program",
+      "program": "${file}"
     },
     {
       "type": "node",
