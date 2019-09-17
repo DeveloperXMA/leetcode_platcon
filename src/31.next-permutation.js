@@ -36,6 +36,4 @@ const swap = (nums, i, j) => {
 const reverse = (nums, begin, end) => {
   for (; begin < end; begin++, end--) {
     swap(nums, begin, end);
-  }
-}
-
+};
