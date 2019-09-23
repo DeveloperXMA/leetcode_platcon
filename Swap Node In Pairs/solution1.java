@@ -1,8 +1,6 @@
-/**
-    At the time of submission:
-    0ms, 34.3mb
+/* 
+    A partially recursive solution to the iterative algorithm.
  */
-
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -47,21 +45,22 @@ class Solution {
 
         // update
         predecessor = left;
-        while (predecessor.next != null && predecessor.next.next != null) {
-            /*
-                predecessor -> left -> right -> successor
-                                        predecessor -> left -> right -> successor
-            */
-            left = predecessor.next;
-            right = left.next;
-            successor = right.next;
-            // swap
-            predecessor.next = right;
-            right.next = left;
-            left.next = successor;
-            // update
-            predecessor = left;
-        }
+        predecessor.next = recur(predecessor.next);
         return result;
+    }
+
+    /* 
+        A recursive implementation of the iterative algorithm
+     */
+     private ListNode recur(ListNode head) {
+         if (head == null) {return null;}
+         if (head.next == null) {return head;}
+         // recur, the right-most part of the list will be sorted
+         ListNode successor = recur(head.next.next);
+         // swap
+         ListNode right = head.next;
+         right.next = head;
+         head.next = successor;
+         return right;
     }
 }
