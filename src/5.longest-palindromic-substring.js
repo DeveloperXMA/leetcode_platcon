@@ -7,21 +7,32 @@
  * @param {string} s
  * @return {string}
  */
+
+
 var longestPalindrome = function(s) {
-    let dp = [...Array(s.length)].map(() => new Array(s.length).fill(false));
+    if (s.length === 0 || s === null) return s;
     let answer = "";
-    let maxLength = 0;
-    for (let j = 0; j < s.length;j++) {
-      for (let i = 0; i <= j; i++) {
-        dp[i][j] = (s[i] === s[j] && ( j - i <= 2 || dp[i+1][j-1]));
-        if (dp[i][j]) {
-          if (j - i + 1 > maxLength) {
-            maxLength = j - i + 1;
-            answer = s.slice(i, j + 1);
-          }
-        }
+    let max = 0;
+    var helper = function (s, left, right) {
+      while (left >= 0 && right < s.length && s[left] === s[right]) {
+        left--;
+        right++;
+      }
+      let current = s.slice(left + 1, right);
+      if (current.length > answer.length) {
+        answer = current;
       }
     }
+    for (let i = 0; i < s.length; i++) {
+      helper(s, i, i);
+      helper(s, i, i + 1);
+    }
+    
     return answer;
 };
+
+longestPalindrome("babad");
+
+
+
 
