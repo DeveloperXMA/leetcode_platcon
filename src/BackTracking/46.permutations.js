@@ -53,3 +53,5 @@ var permute = function (nums) {
   return results;
 };
 
+console.log(permute([1,2,3]))
+
