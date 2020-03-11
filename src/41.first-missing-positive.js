@@ -77,13 +77,16 @@ var isAlienSorted = function(words, order) {
   for (let i = 0; i < words.length - 1; i++) {
       let word1 = words[i];
       let word2 = words[i + 1];
-      
+      let shouldCheck = true;
       for (let k = 0; k < Math.min(word1.length, word2.length); k++) {
           if (word1[k] === word2[k]) continue;
           if (word1[k] > word2[k]) return false;
-          if (word1[k] < word2[k]) break;
+          if (word1[k] < word2[k]) {
+            shouldCheck = false;
+            break;
+          };
       }
-      if (word1.length > word2.length) {
+      if (shouldCheck && word1.length > word2.length) {
           return false;
       }
   }
