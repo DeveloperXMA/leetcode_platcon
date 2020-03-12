@@ -135,52 +135,7 @@
   return minute;
 };
 
-var bfs = function (grid, row, col) {
-  if (row < 0 || row > grid.length || col < 0 || col > grid[0].length) {
-      return -1;
-  }
-  if (grid[row][col] === 2) {
-      let queue = [];
-      let minute = 0;
-      queue.push([row, col]);
-      while (queue.length > 0) {
-          let size = queue.length;
-          let isAnyOrangeRotting = false;
-          for (let i = 0; i < size; i++) {
-            let position = queue.pop();
-            let cRow = position[0];
-            let cCol = position[1];
-            //往上
-            if (cRow - 1 >= 0 && grid[cRow - 1][cCol] === 1) {
-                grid[cRow - 1][cCol] = 2;
-                queue.unshift([cRow - 1, cCol]);
-                isAnyOrangeRotting = true;
-            }
-            
-            if (cRow + 1 < grid.length && grid[cRow + 1][cCol] === 1) {
-                grid[cRow + 1][cCol] = 2;
-                queue.unshift([cRow + 1, cCol]);
-                isAnyOrangeRotting = true;
-            }
-            
-            if (cCol - 1 >= 0 && grid[cRow][cCol - 1] === 1) {
-                grid[cRow][cCol - 1] = 2;
-                queue.unshift([cRow, cCol - 1]);
-                isAnyOrangeRotting = true;
-            }
-            
-            if (cCol + 1 < grid[0].length && grid[cRow][cCol + 1] === 1) {
-                grid[cRow][cCol + 1] = 2;
-                queue.unshift([cRow, cCol + 1]);
-                isAnyOrangeRotting = true;
-            }
-          }
-          if (isAnyOrangeRotting) minute++;
-      }
-      return minute;
-  }
-  return -1;
-}
+
 orangesRotting([[2,1,1],[1,1,0],[0,1,1]])
 
 // @lc code=end
