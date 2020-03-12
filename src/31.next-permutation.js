@@ -7,55 +7,44 @@
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
  */
+ /**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
 var nextPermutation = function(nums) {
-<<<<<<< HEAD
-  let firstSmallThanRight = -1;
+  if (nums === null || nums.length === 0) return;
+  let firstSmall = -1;
   for (let i = nums.length - 2; i >= 0; i--) {
-    if (nums[i] < nums[i + 1]) {
-      firstSmallThanRight = i;
-      break;
-    }
+      if (nums[i] < nums[i + 1]) {
+          firstSmall = i;
+          break;
+      }
   }
-  if (firstSmallThanRight === -1) {
-    reverse(nums, 0, nums.length - 1);
-    return;
+  if (firstSmall === -1) {
+      reverse(nums, 0, nums.length - 1);
+      return;
   }
-
-  for (let i = nums.length - 1; i > firstSmallThanRight; i--) {
-    if (nums[i] > nums[firstSmallThanRight]) {
-      swap(nums, i, firstSmallThanRight);
-      break;
-    }
+  
+  let firstLarge = -1;
+  for (let i = nums.length - 1; i > firstSmall; i--) {
+      if (nums[i] > nums[firstSmall]) {
+          firstLarge = i;
+          break;
+      }
   }
-  reverse(nums, firstSmallThanRight + 1, nums.length - 1);
+  swap(nums,firstSmall, firstLarge);
+  reverse(nums, firstSmall + 1, nums.length - 1);
+  return;
 };
 
-const swap = (nums, i, j) => {
-  [nums[i], nums[j]] = [nums[j], nums[i]];
+var swap = function (nums, i, j) {
+  let temp = nums[i];
+  nums[i] = nums[j];
+  nums[j] = temp;
 }
 
-const reverse = (nums, begin, end) => {
-  for (; begin < end; begin++, end--) {
-    swap(nums, begin, end);
-};
-=======
-    nums.sort((a,b) => (a - b));
-    let result = [];
-    backTrack(nums, result, [], 0);
-    console.log(result);
-};
-
-var backTrack = function(nums, result, tempArray) {
-  if (tempArray.length === nums.length) {
-    result.push([...tempArray]);
-  } else {
-    for (let i = 0; i < nums.length; i++) {
-      if (tempArray.includes(nums[i])) continue;
-      tempArray.push(nums[i]);
-      backTrack(nums, result, tempArray);
-      tempArray.pop();
-    }
+var reverse = function (nums, start, end) {
+  while (start <= end) {
+      swap(nums, start++, end--);
   }
 }
-
->>>>>>> 99d66524922b43a638d8ea9f8de354ab7b267a5e
