@@ -1,3 +1,5 @@
+import { arrayify } from "tslint/lib/utils";
+
 /*
  * @lc app=leetcode id=912 lang=javascript
  *
@@ -38,7 +40,7 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-export const bubbleSort = function(nums) {
+const bubbleSort = (nums) => {
     if (nums === null) return [];
     if (nums.length < 2) return nums;
 
@@ -66,7 +68,7 @@ bubbleSort([3,2,4,6])
  * @description O(Nlog(N)), worst case O(N^2) average O(Nlog(N))
  * @param {number[]} nums 
  */
-export const quickSort = function (nums) {
+const quickSort = function (nums) {
   if (nums === null) return [];
   if (nums.length <= 1) {
     return nums;
@@ -80,6 +82,109 @@ export const quickSort = function (nums) {
   })
   return quickSort(left).concat([pivot]).concat(quickSort(right));
 }
+
+const quickSort2 = function (nums, left = 0, right = nums.length - 1) {
+    let index;
+
+    if (nums.length > 1) {
+      index = partition(nums, left, right);
+      if (left < index - 1) {
+        quickSort2(nums, left, index - 1);
+      }
+      if (index < right) {
+        quickSort2(nums, index, right);
+      }
+    }
+
+    return nums;
+}
+
+const partition = (items, left, right) => {
+
+    let pivot   = items[Math.floor((right + left) / 2)],
+        i       = left,
+        j       = right;
+
+
+    while (i <= j) {
+
+        while (items[i] < pivot) {
+            i++;
+        }
+
+        while (items[j] > pivot) {
+            j--;
+        }
+
+        if (i <= j) {
+            swap(items, i, j);
+            i++;
+            j--;
+        }
+    }
+
+    return i;
+}
+
+const swap = (items, firstIndex, secondIndex) => {
+  var temp = items[firstIndex];
+  items[firstIndex] = items[secondIndex];
+  items[secondIndex] = temp;
+}
+
+
+const merge = (left, right) => {
+  let result = [];
+
+  while (left.length && right.length) {
+    if (left[0] < right[0]) {
+      result.push(left.shift());
+    } else {
+      result.push(right.shift());
+    }
+  }
+
+  return result.concat(left.concat(right));
+}
+
+/**
+ * @description O(Nlog(N))
+ * @param array 
+ */
+
+const mergeSort = (array) => {
+  if (array.length < 2) {
+    return array;
+  }
+
+  const middle = Math.floor(array.length / 2);
+  const left = array.slice(0, middle);
+  const right = array.slice(middle);
+  return merge(mergeSort(left), mergeSort(right));
+}
+
+console.log(mergeSort([4,3,5,1,6]))
+
+
+/**
+ * Time O(N^2)
+ * @param array 
+ */
+const insertionSort = (array) => {
+  if (array.length <= 1) return array;
+
+  for (let i = 1; i < array.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if (array[i] < array[j]) {
+        let temp = array.splice(i, 1);
+        array.splice(j, 0, temp[0]);
+      }
+    }
+  }
+  return array;
+ }
+
+ console.log('insert sort', insertionSort([6,2,5,7,9]))
 // @lc code=end
 
 // quickSort([5,2,3,1])
