@@ -1,4 +1,47 @@
-<<<<<<< HEAD
+/*
+ * @lc app=leetcode id=211 lang=javascript
+ *
+ * [211] Add and Search Word - Data structure design
+ *
+ * https://leetcode.com/problems/add-and-search-word-data-structure-design/description/
+ *
+ * algorithms
+ * Medium (32.49%)
+ * Likes:    1384
+ * Dislikes: 73
+ * Total Accepted:    157.1K
+ * Total Submissions: 456.7K
+ * Testcase Example:  '["WordDictionary","addWord","addWord","addWord","search","search","search","search"]\n[[],["bad"],["dad"],["mad"],["pad"],["bad"],[".ad"],["b.."]]'
+ *
+ * Design a data structure that supports the following two operations:
+ * 
+ * 
+ * void addWord(word)
+ * bool search(word)
+ * 
+ * 
+ * search(word) can search a literal word or a regular expression string
+ * containing only letters a-z or .. A . means it can represent any one
+ * letter.
+ * 
+ * Example:
+ * 
+ * 
+ * addWord("bad")
+ * addWord("dad")
+ * addWord("mad")
+ * search("pad") -> false
+ * search("bad") -> true
+ * search(".ad") -> true
+ * search("b..") -> true
+ * 
+ * 
+ * Note:
+ * You may assume that all words are consist of lowercase letters a-z.
+ * 
+ */
+
+// @lc code=start
 var TreeNode = function (val) {
   this.val = val;
   this.map = new Map();
@@ -29,35 +72,9 @@ WordDictionary.prototype.addWord = function (word) {
     if (i + 1 === word.length) {
       curr.isComplete = true;
     }
-=======
-/**
- * @param {character[]} s
- * @return {void} Do not return anything, modify s in-place instead.
- */
-var reverseWords = function (s) {
-  s = s.reverse();
-  for (let i = 0, j = 0; i < s.length, j < s.length;) {
-    while (s[j] && s[j] !== ' ') {
-      j++;
-    };
-    let nextStart = j + 1;
-    j--;
-    swap(s, i, j);
-    i = nextStart;
-    j = nextStart;
   }
 };
 
-const swap = function (s, i, j) {
-  while (i < j) {
-    [s[i], s[j]] = [s[j], s[i]];
-    i++;
-    j--;
->>>>>>> dbf3157441cc55fe0972a22e188112ea172d38ad
-  }
-};
-
-<<<<<<< HEAD
 /**
  * Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. 
  * @param {string} word
@@ -65,6 +82,7 @@ const swap = function (s, i, j) {
  */
 WordDictionary.prototype.search = function (word) {
   var helper = function (node, word) {
+    if (node === null) return false;
     if (word.length === 0) return node.isComplete;
     if (word[0] === '.') {
       let children = node.map.values();
@@ -84,12 +102,10 @@ WordDictionary.prototype.search = function (word) {
   return helper(this.root, word);
 };
 
-let dic = new WordDictionary();
-dic.addWord("at");
-dic.addWord("and");
-dic.addWord("an");
-dic.addWord("add");
-dic.search("a");
-=======
-reverseWords(["t", "h", "e", " ", "s", "k", "y", " ", "i", "s", " ", "b", "l", "u", "e"])
->>>>>>> dbf3157441cc55fe0972a22e188112ea172d38ad
+/**
+ * Your WordDictionary object will be instantiated and called as such:
+ * var obj = new WordDictionary()
+ * obj.addWord(word)
+ * var param_2 = obj.search(word)
+ */
+

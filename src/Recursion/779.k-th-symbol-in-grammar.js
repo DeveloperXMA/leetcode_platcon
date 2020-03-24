@@ -10,7 +10,8 @@
  * @param {number} K
  * @return {number}
  */
-var kthGrammar = function(N, K) {
+
+var kthGrammar = function (N, K) {
   if (N === 1) return 0;
   if (N === 2) {
     if (K === 1) {
