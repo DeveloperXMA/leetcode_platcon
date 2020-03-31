@@ -22,6 +22,6 @@ const swap = function (s, i, j) {
     i++;
     j--;
   }
-}
+};
 
 reverseWords(["t", "h", "e", " ", "s", "k", "y", " ", "i", "s", " ", "b", "l", "u", "e"])
