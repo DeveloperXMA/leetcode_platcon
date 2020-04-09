@@ -52,21 +52,14 @@
  * @return {boolean}
  */
 var isSymmetric = function(root) {
-    function doCheck(left, right) {
-      if (left === null && right === null) {
-        return true;
-      } else if (left === null) {
-        return false;
-      } else if (right === null) {
-        return false;
-      }
+    const helper = (left, right) => {
+      if (!left && !right) return true;
+      if (!left && right) return false;
+      if (left && !right) return false;
+      if (left.val !== right.val) return false;
 
-      if (left.val !== right.val) {
-        return false;
-      } else {
-        return doCheck(left.left, right.right) && doCheck(left.right, right.left);
-      }
+      return helper(left.left, right.right) && helper(left.right, right.left);
     }
-    return doCheck(root, root);
+    return helper(root, root);
 };
 
