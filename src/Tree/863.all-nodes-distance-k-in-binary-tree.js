@@ -115,5 +115,40 @@ var distanceK = function(root, target, K) {
   }
   return ans;
 };
+
+var distanceK = function(root, target, K) {
+  let map = new Map();
+  
+  const find = (root, target) => {
+      if (root === null) return -1;
+      if (root === target) {
+          map.set(root, 0);
+          return 0;
+      }
+      let left = find(root.left, target);
+      if (left >= 0) {
+          map.set(root, left + 1);
+          return left + 1;
+      }
+      let right = find(root.right, target);
+      if (right >= 0) {
+          map.set(root, right + 1);
+          return right + 1;
+      }
+      return -1;
+  }
+  find(root, target);
+  
+  let ans = [];
+  const dfs = (root, target, K, length) => {
+      if (root === null) return;
+      if (map.has(root)) length = map.get(root);
+      if (length === K) ans.push(root.val);
+      dfs(root.left, target, K, length + 1);
+      dfs(root.right, target, K, length + 1);
+  }
+  dfs(root, target, K, map.get(root));
+  return ans;
+};
 // @lc code=end
 
