@@ -18,7 +18,8 @@
   },
   "jest": {
     "testEnvironment": "node"
- },
+  },
   "author": "xinrui ma",
   "license": "ISC"
 }
+:
