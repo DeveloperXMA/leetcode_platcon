@@ -53,3 +53,35 @@ var spiralOrder = function(matrix) {
 };
 
 spiralOrder([[1,2,3],[4,5,6],[7,8,9]]);
+
+/**
+ * @param {number[][]} matrix
+ * @return {number[]}
+ */
+var spiralOrder = function(matrix) {
+  if (!matrix || matrix.length === 0 || matrix[0].length === 0) return [];
+  
+  const rowL = matrix.length;
+  const colL = matrix[0].length;
+  const steps = rowL * colL;
+  
+  let result = [];
+  
+  let seen = [...new Array(rowL)].map(() => [...new Array(colL)].fill(false));
+  
+  const dir = [[0, 1], [1, 0], [0 , -1], [-1, 0]]; // 向右，下，左， 上
+  let currDir = 0;
+  let r = 0, c = 0;
+  for (let i = 0; i < steps; i++) {
+      result.push(matrix[r][c]);
+      seen[r][c] = true;
+      let nextRowIndex = r + dir[currDir][0];
+      let nextColIndex = c + dir[currDir][1];
+      if (nextRowIndex >= rowL || nextRowIndex < 0 || nextColIndex >= colL || nextColIndex < 0 || seen[nextRowIndex][nextColIndex]) {
+          currDir = (currDir + 1) % 4;
+      }
+      r = r + dir[currDir][0];
+      c = c + dir[currDir][1];
+  }
+  return result;
+};
