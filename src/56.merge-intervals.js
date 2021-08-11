@@ -61,3 +61,31 @@ var merge = function(intervals) {
 };
 // @lc code=end
 
+/**
+ * @param {number[][]} intervals
+ * @return {number[][]}
+ */
+ var merge = function(intervals) {
+  intervals.sort((a,b) => {
+      return a[0] - b[0];
+  });
+  if (intervals.length === 1) return [[...intervals[0]]];
+  let low = intervals[0][0];
+  let high = intervals[0][1];
+  const result = [];
+  for (let index = 1; index < intervals.length; index++) {
+      // 第二个线段右端被当前线段包围
+      if (intervals[index][1] <= high) continue;
+      // 第二个线段的左端比当前线段右边还高
+      if (intervals[index][0] > high) {
+          result.push([low, high]);
+          low = intervals[index][0];
+          high = intervals[index][1];
+          continue;
+      }
+      // 当以上两个条件都不满足，那么
+      high = intervals[index][1];
+  }
+  result.push([low, high]);
+  return result;
+};
